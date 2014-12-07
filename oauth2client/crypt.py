@@ -135,7 +135,8 @@ try:
       else:
         if isinstance(password, six.text_type):
           password = password.encode('utf-8')
-        pkey = crypto.load_pkcs12(key, password).get_privatekey()
+        #pkey = crypto.load_pkcs12(key, password).get_privatekey()
+          pkey = crypto.load_pkcs12(file(key,"rb").read(),str(password)).get_privatekey()
       return OpenSSLSigner(pkey)
 
 except ImportError:
